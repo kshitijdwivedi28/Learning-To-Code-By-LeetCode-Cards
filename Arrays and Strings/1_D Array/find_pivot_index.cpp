@@ -1,4 +1,4 @@
-Question - <a href="question_url">https://leetcode.com/problems/find-pivot-index/</a>
+Question - https://leetcode.com/problems/find-pivot-index/
 
 
 class Solution {
