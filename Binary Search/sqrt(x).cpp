@@ -2,12 +2,7 @@ class Solution {
 public:
     long long int mySqrt(long long int x) {
         
-        vector<long long int> temp(sqrt(x)+2,0);
-        
-        for(int i = 0; i < temp.size(); i++)
-            temp[i] = i;
-        
-        long long int start = 0, end = temp.size(), ans;
+        long long int start = 0, end = sqrt(x)+2, ans;
         
         while(start <= end)
         {
