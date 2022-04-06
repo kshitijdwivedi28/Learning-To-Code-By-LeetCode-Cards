@@ -1,0 +1,35 @@
+  Add Operation - Singly Linked List
+Report Issue
+If we want to add a new value after a given node prev, we should: 
+
+Initialize a new node cur with the given value;
+Link the "next" field of cur to prev's next node next;
+Link the "next" field in prev to cur.
+Unlike an array, we don’t need to move all elements past the inserted element. Therefore, you can insert a new node into a linked list in O(1) time complexity, which is very efficient.
+
+ 
+
+An Example
+
+
+Let's insert a new value 9 after the second node 6.
+
+We will first initialize a new node with value 9. Then link node 9 to node 15. Finally, link node 6 to node 9.
+
+After insertion, our linked list will look like this:
+
+
+
+ 
+Add a Node at the Beginning
+As we know, we use the head node head to represent the whole list.
+
+So it is essential to update head when adding a new node at the beginning of the list.
+
+Initialize a new node cur;
+Link the new node to our original head node head.
+Assign cur to head.
+For example, let's add a new node 9 at the beginning of the list.
+
+We initialize a new node 9 and link node 9 to current head node 23.
+Assign node 9 to be our new head.
