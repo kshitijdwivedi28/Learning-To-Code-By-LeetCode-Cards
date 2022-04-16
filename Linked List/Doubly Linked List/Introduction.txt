@@ -22,7 +22,12 @@ The green arrows indicate how our "prev" field works.
 Node Structure
 Here is a typical definition of the node structure in a doubly linked list:
 
-
+// Definition for doubly-linked list.
+struct DoublyListNode {
+    int val;
+    DoublyListNode *next, *prev;
+    DoublyListNode(int x) : val(x), next(NULL), prev(NULL) {}
+};
 
 Similar to the singly linked list, we will use the head node to represent the whole list.
 
