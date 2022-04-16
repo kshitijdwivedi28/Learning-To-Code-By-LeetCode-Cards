@@ -1,268 +1,149 @@
-Rotate List
+ Copy List with Random Pointer
 
 Solution
-Given the head of a linked list, rotate the list to the right by k places.
+A linked list of length n is given such that each node contains an additional random pointer, which could point to any node in the list, or null.
+
+Construct a deep copy of the list. The deep copy should consist of exactly n brand new nodes, where each new node has its value set to the value of its corresponding original node. Both the next and random pointer of the new nodes should point to new nodes in the copied list such that the pointers in the original list and copied list represent the same list state. None of the pointers in the new list should point to nodes in the original list.
+
+For example, if there are two nodes X and Y in the original list, where X.random --> Y, then for the corresponding two nodes x and y in the copied list, x.random --> y.
+
+Return the head of the copied linked list.
+
+The linked list is represented in the input/output as a list of n nodes. Each node is represented as a pair of [val, random_index] where:
+
+val: an integer representing Node.val
+random_index: the index of the node (range from 0 to n-1) that the random pointer points to, or null if it does not point to any node.
+Your code will only be given the head of the original linked list.
 
  
 
 Example 1:
 
 
-Input: head = [1,2,3,4,5], k = 2
-Output: [4,5,1,2,3]
+Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
 Example 2:
 
 
-Input: head = [0,1,2], k = 4
-Output: [2,0,1]
+Input: head = [[1,1],[2,1]]
+Output: [[1,1],[2,1]]
+Example 3:
+
+
+
+Input: head = [[3,null],[3,0],[3,null]]
+Output: [[3,null],[3,0],[3,null]]
  
 
 Constraints:
 
-The number of nodes in the list is in the range [0, 500].
--100 <= Node.val <= 100
-0 <= k <= 2 * 109
+0 <= n <= 1000
+-104 <= Node.val <= 104
+Node.random is null or is pointing to some node in the linked list.
+   Show Hint #1  
+   Show Hint #2  
+   Show Hint #3  
+   Show Hint #4  
 C++	
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-public:
-    ListNode* rotateRight(ListNode* head, int k) {
-        
-        if (!head)
-            return NULL;
-        
-//         vector<int> a;
-        
-//         ListNode *t = head;
-        
-//         while(t)
-//         {
-//             a.push_back(t->val);
-//             t = t->next;
-//         }
-        
-//         int r = k % a.size();
-        
-//         ListNode *ans_head = new ListNode(0);
-//         ListNode *ans = ans_head;
-        
-//         for(int i = a.size() - r; i < a.size(); i++)
-//         {
-//             ans->next = new ListNode(a[i]);
-//             ans = ans->next;
-//         }
-        
-//         for(int i = 0; i < a.size() - r; i++)
-//         {
-//             ans->next = new ListNode(a[i]);
-//             ans = ans->next;   
-//         }
-        
-//         return ans_head->next;
-        
-        
-        
-        
-        
-        ListNode *t = head;
-        
-        // calculate size and make linked list circular
-        int len = 1;
-        
-        while(t->next != NULL)
-        {
-            len++;
-            t = t->next;
-        }
-        
-        t->next = head;
-         
-        // count rotations
-        int r = k % len;
-        r = len - r;
-        
-    
-        // traverse and break the chain 
-        t = head;
-        
-        while(r-- > 1)
-            t = t->next;
-        
-        ListNode *ans_head = t->next;
-        t->next = NULL;
-        
-        return ans_head;
-        
-    }
-}
 1
-/**
+/*
 2
- * Definition for singly-linked list.
+// Definition for a Node.
 3
- * struct ListNode {
+class Node {
 4
- *     int val;
-5
- *     ListNode *next;
-6
- *     ListNode() : val(0), next(nullptr) {}
-7
- *     ListNode(int x) : val(x), next(nullptr) {}
-8
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
-9
- * };
-10
- */
-11
-class Solution {
-12
 public:
+5
+    int val;
+6
+    Node* next;
+7
+    Node* random;
+8
+    
+9
+    Node(int _val) {
+10
+        val = _val;
+11
+        next = NULL;
+12
+        random = NULL;
 13
-    ListNode* rotateRight(ListNode* head, int k) {
+    }
 14
-        
+};
 15
-        if (!head)
+*/
 16
-            return NULL;
+​
 17
-        
+class Solution {
 18
-//         vector<int> a;
+public:
 19
-        
+    Node* copyRandomList(Node* head) 
 20
-//         ListNode *t = head;
+    {
 21
-        
+        if (!head)
 22
-//         while(t)
+            return NULL;
 23
-//         {
+        
 24
-//             a.push_back(t->val);
+        unordered_map<Node*, Node*> m;
 25
-//             t = t->next;
+​
 26
-//         }
+        Node* t = head;
 27
         
 28
-//         int r = k % a.size();
+        while (t) 
 29
-        
+        {
 30
-//         ListNode *ans_head = new ListNode(0);
+            m[t] = new Node(t->val);
 31
-//         ListNode *ans = ans_head;
+            t = t->next;
 32
-        
+        }
 33
-//         for(int i = a.size() - r; i < a.size(); i++)
+        
 34
-//         {
+        for(auto value : m)
 35
-//             ans->next = new ListNode(a[i]);
+            cout << value.first->val << " " << value.second->val << endl;
 36
-//             ans = ans->next;
+        cout << endl << endl;
 37
-//         }
+        
 38
         
 39
-//         for(int i = 0; i < a.size() - r; i++)
+        t = head;
 40
-//         {
+        
 41
-//             ans->next = new ListNode(a[i]);
+        while (t) 
 42
-//             ans = ans->next;   
+        {
 43
-//         }
+            m[t]->next = m[t->next];
 44
-        
+            m[t]->random = m[t->random];
 45
-//         return ans_head->next;
+            t = t->next;
 46
-        
+        }
 47
         
 48
-        
+        return m[head];
 49
-        
-50
-        
-51
-        ListNode *t = head;
-52
-        
-53
-        // calculate size and make linked list circular
-54
-        int len = 1;
-55
-        
-56
-        while(t->next != NULL)
-57
-        {
-58
-            len++;
-59
-            t = t->next;
-60
-        }
-61
-        
-62
-        t->next = head;
-63
-         
-64
-        // count rotations
-65
-        int r = k % len;
-66
-        r = len - r;
-67
-        
-68
     
-69
-        // traverse and break the chain 
-70
-        t = head;
-71
-        
-72
-        while(r-- > 1)
-73
-            t = t->next;
-74
-        
-75
-        ListNode *ans_head = t->next;
-76
-        t->next = NULL;
-77
-        
-78
-        return ans_head;
-79
-        
-80
+50
     }
-81
+51
 };
