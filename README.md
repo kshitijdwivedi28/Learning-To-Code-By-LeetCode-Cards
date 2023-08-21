@@ -1,5 +1,5 @@
-# Learning-on-LeetCode-by-Cards
-ALL LEETCODE FREE LEARNING PROBELMS IN C++
+# Learning-To-Code-By-LeetCode-Cards
+ALL FREE LEETCODE CARD PROBLEMS IN C++
 
 ## CARDS DONE -
 ### ARRAYS 101
